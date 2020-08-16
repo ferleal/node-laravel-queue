@@ -1,0 +1,55 @@
+{
+  "name": "node-laravel-queue",
+  "version": "0.1.0",
+  "description": "NodeJs Laravel Queue Sync",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "npm run clean; babel src --out-dir lib",
+    "clean": "rm -rf lib",
+    "lint": "eslint --ext lib/**/*.js",
+    "lint-fix": "eslint --ext lib/**/*.js --fix"
+  },
+  "lint-staged": {
+    "*.{js}": "eslint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "files": [
+    "lib"
+  ],
+  "author": "Fernando Leal",
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "laravel",
+    "redis",
+    "queue"
+  ],
+  "homepage": "https://github.com/ferleal/node-laravel-queue",
+  "bugs": {
+    "url": "https://github.com/ferleal/node-laravel-queue/issues",
+    "email": "fernandoleal@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ferleal/node-laravel-queue.git"
+  },
+  "dependencies": {
+    "get-random-values": "^1.2.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
+    "php-serialize": "^4.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "eslint": "^7.7.0",
+    "eslint-config-google": "^0.14.0",
+    "nodemon": "^2.0.4",
+    "redis": "^3.0.2"
+  }
+}
