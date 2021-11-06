@@ -1,6 +1,6 @@
 {
   "name": "node-laravel-queue",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "NodeJs Laravel Queue Sync",
   "main": "lib/index.js",
   "scripts": {
@@ -39,17 +39,17 @@
   },
   "dependencies": {
     "get-random-values": "^1.2.0",
-    "husky": "^4.2.5",
+    "husky": "^7.0.4",
     "lint-staged": "^10.2.11",
     "php-serialize": "^4.0.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.10.5",
+    "@babel/cli": "^7.16.0",
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
-    "eslint": "^7.7.0",
+    "eslint": "^8.2.0",
     "eslint-config-google": "^0.14.0",
     "nodemon": "^2.0.4",
-    "redis": "^3.0.2"
+    "redis": "^3.1.2"
   }
 }
