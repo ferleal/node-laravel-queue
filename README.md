@@ -38,7 +38,7 @@ queueNodejsWorker.on('job', ({name, data}) => {
 });
 queueNodejsWorker.listen();
 ```
-
+* Sending jobs from Laravel :
 ```php
 <?php
 $job = new \App\Jobs\TestJob('please','send to','nodejs');
