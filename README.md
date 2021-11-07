@@ -1,7 +1,7 @@
 ## Node Laravel Queue
 
 Queue sync between NodeJS and Laravel using Redis driver. You can process Jobs dispatched from Laravel in NodeJS or biceversa.
- 
+
 This a modifed version from the original [Noderavel](https://github.com/movilizame/noderavel), special thanks to Mariano Botta
 
 ### Install
@@ -25,10 +25,17 @@ redisCliente = redis.createClient(6379, 'localhost');
 
 let queueNodejsWorker = new Queue({
     client: redisCliente,
+  // For Laravel 5.8 < you may need to tweek on the construct vars
+  //  appname: '',
+   //  prefix: '',
+  //  isQueueNotify: false,
     queue: 'nodeJS',
     driver: 'redis',
     scope: {
-        'App\\Jobs\\TestJob': Job
+        'App\\Jobs\\TestJob': Job,
+       // Can use multiple scopes at once
+      // 'App\\Jobs\\TestJob2': Job,
+
     }
 });
 
@@ -58,7 +65,7 @@ redisCliente = redis.createClient(6379, 'localhost');
 
 let queueLaravelWorker = new Queue({
     client: redisCliente,
-    appname: '3dvent',
+    appname: 'DotEnvAppName',
     driver: 'redis',
     scope: {
         'App\\Jobs\\TestJob': Job

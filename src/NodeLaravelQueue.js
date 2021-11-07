@@ -2,10 +2,11 @@ const Serialize = require('php-serialize');
 const EventEmitter = require('events');
 const tools = require('./tools');
 class Queue extends EventEmitter {
-  constructor({driver = 'redis', client, scope = {}, queue = 'default', appname = 'laravel', prefix = '_database_'}) {
+  constructor({driver = 'redis', client, scope = {}, queue = 'default', appname = 'laravel', prefix = '_database_', isQueueNotify=true}) {
     super();
     this.driver = driver;
     this.client = client;
+    this.isQueueNotify = isQueueNotify;
     this.scope = scope;
     this.appname= appname;
     this.prefix = prefix;
@@ -33,19 +34,21 @@ class Queue extends EventEmitter {
     const pop = () => {
       this.client.blpop(this.appname+this.prefix+'queues:' + this.queue, 60000, (err, replay) => {
         if (err) {
-          // Error!
-        } else {
-          const obj = JSON.parse(replay[1]);
-          const command = obj.data.command;
-          const scopeCmdName = Object.keys(this.scope);
-          if (obj.data.commandName !== scopeCmdName?.[0] ) {
-            this.emit('job', {name: obj.data.commandName, data: {error:true, msg: 'Error Wrong Scope'}});
-            return;
-          }
-          const raw = Serialize.unserialize(command, this.scope);
-          this.emit('job', {name: obj.data.commandName, data: raw});
+          console.error(`Error node-laravel-queue ${err}`);
+          return;
         }
-        this.client.blpop(this.appname+this.prefix+'queues:' + this.queue+':notify', 60000, (err, replay) => {});
+        const obj = JSON.parse(replay[1]);
+        const command = obj.data.command;
+        if (this.scope.hasOwnProperty(obj.data.commandName) === false ) {
+          console.error(`Error node-laravel-queue Scope ${obj.data.commandName} not found`);
+          return;
+        }
+        const raw = Serialize.unserialize(command, this.scope);
+        this.emit('job', {name: obj.data.commandName, data: raw});
+        if (this.isQueueNotify === true) {
+          this.client.blpop(this.appname + this.prefix + 'queues:' + this.queue + ':notify', 60000, (err, replay) => {
+          });
+        }
         pop();
       });
     };
