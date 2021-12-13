@@ -1,6 +1,6 @@
 {
   "name": "node-laravel-queue",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "NodeJs Laravel Queue Sync",
   "main": "lib/index.js",
   "scripts": {
