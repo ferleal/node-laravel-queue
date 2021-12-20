@@ -2171,16 +2171,6 @@
   "resolved" "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   "version" "1.4.0"
 
-"node-laravel-queue@file:":
-  "resolved" "file:"
-  "version" "0.1.4"
-  dependencies:
-    "get-random-values" "^1.2.0"
-    "husky" "^7.0.4"
-    "lint-staged" "^10.2.11"
-    "node-laravel-queue" "file:"
-    "php-serialize" "^4.0.2"
-
 "node-releases@^2.0.1":
   "integrity" "sha512-CqyzN6z7Q6aMeF/ktcMVTzhAHCEpf8SOarwpzpf8pNBY2k5/oM34UHldUwp8VKI7uxct2HxSRdJjBaZeESzcxA=="
   "resolved" "https://registry.npmjs.org/node-releases/-/node-releases-2.0.1.tgz"

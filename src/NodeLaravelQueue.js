@@ -49,8 +49,8 @@ class Queue extends EventEmitter {
           console.error(`Error node-laravel-queue ${err}`);
           return;
         }
-        if (typeof replay[1] == 'undefined') {
-          this.winston.error(`Error node-laravel-queue Empty Redis info : ${replay}`);
+        if (replay?.[1] == undefined) {
+          this.winston.error(`Queue: ${this.appname + this.prefix + 'queues:' + this.queue}. Error node-laravel-queue Empty Redis info : ${replay}`);
           console.error(`Error node-laravel-queue Empty Redis info : ${replay}`);
           return;
         }
